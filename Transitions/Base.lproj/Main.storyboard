@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Transitions" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Ds-PB-p0V">
+                                <rect key="frame" x="57" y="328" width="300" height="250"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="9Ds-PB-p0V" secondAttribute="height" multiplier="6:5" id="HDE-hj-zRV"/>
+                                    <constraint firstAttribute="width" constant="300" id="Ico-pX-Yfg"/>
+                                </constraints>
+                                <connections>
+                                    <segue destination="8ba-Y2-60z" kind="embed" id="w6n-2V-Q7Q"/>
+                                </connections>
+                            </containerView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemGray2Color"/>
+                        <constraints>
+                            <constraint firstItem="9Ds-PB-p0V" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="3wx-Hz-ZnA"/>
+                            <constraint firstItem="9Ds-PB-p0V" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="NFw-dO-Tez"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="137.68115942028987" y="137.94642857142856"/>
+        </scene>
+        <!--Expandable View Controller-->
+        <scene sceneID="YGb-t8-VNi">
+            <objects>
+                <viewController id="8ba-Y2-60z" customClass="ExpandableViewController" customModule="Transitions" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="onP-r3-5qe">
+                        <rect key="frame" x="0.0" y="0.0" width="300" height="250"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6XN-Zs-Zci">
+                                <rect key="frame" x="124.5" y="110" width="51" height="30"/>
+                                <state key="normal" title="Expand"/>
+                                <connections>
+                                    <action selector="presentationToggleButtonTapped:" destination="8ba-Y2-60z" eventType="touchUpInside" id="tKH-7a-PPH"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemYellowColor"/>
+                        <constraints>
+                            <constraint firstItem="6XN-Zs-Zci" firstAttribute="centerX" secondItem="onP-r3-5qe" secondAttribute="centerX" id="6Fc-L7-bIw"/>
+                            <constraint firstItem="6XN-Zs-Zci" firstAttribute="centerY" secondItem="onP-r3-5qe" secondAttribute="centerY" id="Zmd-Um-CnH"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gLL-PU-Ewh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="765" y="138"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemGray2Color">
+            <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemYellowColor">
+            <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>
