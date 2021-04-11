@@ -8,7 +8,7 @@
 import UIKit
 
 class PresentationAnimator: NSObject, UIViewControllerAnimatedTransitioning {
-  private let transitionDuration = TimeInterval(3.33)
+  private let transitionDuration = TimeInterval(0.33)
   private let isPresenting: Bool
 
   init(isPresenting: Bool = true) {
@@ -26,34 +26,27 @@ class PresentationAnimator: NSObject, UIViewControllerAnimatedTransitioning {
       return
     }
 
-//    if isPresenting {
-//      transitionContainerView.embed(expandableViewControllerRootView, atIndex: nil, insets: .zero)
-//    } else {
-//      transitionContainerView.addSubview(expandableViewControllerRootView)
-//    }
-
     transitionContainerView.embed(expandableViewControllerRootView, atIndex: nil, insets: .zero)
 
 //    transitionContainerView.addSubview(expandableViewControllerRootView)
 
-    if isPresenting {
-      expandableViewControllerRootView.frame = expandableViewController.containerView?.frame
-        ?? CGRect(origin: .zero, size: CGSize(width: 200, height: 175))//.zero
-    }
+    expandableViewControllerRootView.frame = isPresenting
+      ? expandableViewController.containerView?.frame ?? .zero
+      : transitionContext.initialFrame(for: expandableViewController)
 
-    transitionContainerView.backgroundColor = .systemTeal // debugging
+    transitionContainerView.backgroundColor = UIColor.systemTeal.withAlphaComponent(0.3) // debugging
 
+//    print("Bonzy: \(expandableViewController.containerView?.frame ?? .zero)")
     let finalFrame = isPresenting
-      ? transitionContainerView.frame
+      ? transitionContext.finalFrame(for: expandableViewController)//transitionContainerView.frame
       : (expandableViewController.containerView?.frame ?? .zero)
 
-    print("""
-isPresenting  : \(isPresenting ? "Presentation" : "Dismissal")
-transitionView: \(transitionContainerView.frame)
-initialFrame  : \(transitionContext.initialFrame(for: expandableViewController))
-finalFrame    : \(transitionContext.finalFrame(for: expandableViewController))
-""")
-
+//    print("""
+//\(isPresenting ? "[Presentation]" : "[Dismissal]")
+//  transitionView  : \(transitionContainerView.frame)
+//  initialFrame    : \(transitionContext.initialFrame(for: expandableViewController))
+//  finalFrame      : \(transitionContext.finalFrame(for: expandableViewController))
+//""")``
 
     UIViewPropertyAnimator.runningPropertyAnimator(withDuration: transitionDuration, delay: 0, options: .curveLinear) {
       expandableViewController.view.frame = finalFrame
@@ -61,7 +54,7 @@ finalFrame    : \(transitionContext.finalFrame(for: expandableViewController))
     }
     completion: { _ in
 
-      print(expandableViewControllerRootView.frame, "\n------------------\n")
+//      print("\tAfter completion:", expandableViewControllerRootView.frame, "\n------------------\n")
       if transitionContext.transitionWasCancelled {
         expandableViewController.view.removeFromSuperview()
       }

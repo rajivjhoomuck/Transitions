@@ -12,6 +12,11 @@ class ExpandableViewController: UIViewController {
   private(set) weak var containerView: UIView?
   private(set) weak var containerViewController: UIViewController?
 
+  public override var modalPresentationStyle: UIModalPresentationStyle {
+    willSet { assert(newValue == .fullScreen, "Modal presentation style other than `.fullScreen` is not supported.") }
+    didSet { super.modalPresentationStyle = .fullScreen }
+  }
+
   public override func didMove(toParent parent: UIViewController?) {
       super.didMove(toParent: parent)
 
@@ -30,10 +35,9 @@ extension ExpandableViewController {
       dismiss(animated: true) { [weak self] in
         guard let self = self else { return }
 
-        print("[[[]]]")
         self.willMove(toParent: self.containerViewController)
-        self.containerViewController?.addChild(self)
         self.containerView?.embed(self.view, atIndex: nil, insets: .zero)
+        self.containerViewController?.addChild(self)
         self.didMove(toParent: self.containerViewController)
         button.setTitle("Expand", for: .normal)
       }

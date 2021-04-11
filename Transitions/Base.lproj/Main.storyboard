@@ -18,6 +18,7 @@
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Ds-PB-p0V">
                                 <rect key="frame" x="57" y="328" width="300" height="250"/>
+                                <color key="backgroundColor" systemColor="systemGreenColor"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="9Ds-PB-p0V" secondAttribute="height" multiplier="6:5" id="HDE-hj-zRV"/>
                                     <constraint firstAttribute="width" constant="300" id="Ico-pX-Yfg"/>
@@ -42,23 +43,24 @@
         <!--Expandable View Controller-->
         <scene sceneID="YGb-t8-VNi">
             <objects>
-                <viewController id="8ba-Y2-60z" customClass="ExpandableViewController" customModule="Transitions" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="onP-r3-5qe">
+                <viewController modalPresentationStyle="fullScreen" id="8ba-Y2-60z" customClass="ExpandableViewController" customModule="Transitions" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="onP-r3-5qe">
                         <rect key="frame" x="0.0" y="0.0" width="300" height="250"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6XN-Zs-Zci">
-                                <rect key="frame" x="124.5" y="110" width="51" height="30"/>
+                                <rect key="frame" x="124.5" y="132" width="51" height="30"/>
                                 <state key="normal" title="Expand"/>
                                 <connections>
                                     <action selector="presentationToggleButtonTapped:" destination="8ba-Y2-60z" eventType="touchUpInside" id="tKH-7a-PPH"/>
                                 </connections>
                             </button>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="nhI-QZ-CcB"/>
                         <color key="backgroundColor" systemColor="systemYellowColor"/>
                         <constraints>
-                            <constraint firstItem="6XN-Zs-Zci" firstAttribute="centerX" secondItem="onP-r3-5qe" secondAttribute="centerX" id="6Fc-L7-bIw"/>
-                            <constraint firstItem="6XN-Zs-Zci" firstAttribute="centerY" secondItem="onP-r3-5qe" secondAttribute="centerY" id="Zmd-Um-CnH"/>
+                            <constraint firstItem="6XN-Zs-Zci" firstAttribute="centerX" secondItem="nhI-QZ-CcB" secondAttribute="centerX" id="EoO-Lc-Ebn"/>
+                            <constraint firstItem="6XN-Zs-Zci" firstAttribute="centerY" secondItem="nhI-QZ-CcB" secondAttribute="centerY" id="c3d-oR-nTi"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -70,6 +72,9 @@
     <resources>
         <systemColor name="systemGray2Color">
             <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemYellowColor">
             <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
