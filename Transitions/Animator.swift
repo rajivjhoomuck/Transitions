@@ -28,18 +28,17 @@ class PresentationAnimator: NSObject, UIViewControllerAnimatedTransitioning {
 
     transitionContainerView.embed(expandableViewControllerRootView, atIndex: nil, insets: .zero)
 
-//    transitionContainerView.addSubview(expandableViewControllerRootView)
-
     expandableViewControllerRootView.frame = isPresenting
       ? expandableViewController.containerView?.frame ?? .zero
       : transitionContext.initialFrame(for: expandableViewController)
 
     transitionContainerView.backgroundColor = UIColor.systemTeal.withAlphaComponent(0.3) // debugging
 
-//    print("Bonzy: \(expandableViewController.containerView?.frame ?? .zero)")
     let finalFrame = isPresenting
-      ? transitionContext.finalFrame(for: expandableViewController)//transitionContainerView.frame
-      : (expandableViewController.containerView?.frame ?? .zero)
+      ? transitionContext.finalFrame(for: expandableViewController) // transitionContainerView.frame
+      : expandableViewController.containerView.map { $0.convert($0.frame, to: nil) } ?? .zero
+
+    print(finalFrame)
 
 //    print("""
 //\(isPresenting ? "[Presentation]" : "[Dismissal]")
