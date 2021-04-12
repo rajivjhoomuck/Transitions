@@ -46,8 +46,10 @@
                 <viewController modalPresentationStyle="fullScreen" id="8ba-Y2-60z" customClass="ExpandableViewController" customModule="Transitions" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="onP-r3-5qe">
                         <rect key="frame" x="0.0" y="0.0" width="300" height="250"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="image" translatesAutoresizingMaskIntoConstraints="NO" id="pUi-7O-nHs">
+                                <rect key="frame" x="0.0" y="0.0" width="300" height="250"/>
+                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6XN-Zs-Zci">
                                 <rect key="frame" x="124.5" y="132" width="51" height="30"/>
                                 <state key="normal" title="Expand"/>
@@ -59,8 +61,12 @@
                         <viewLayoutGuide key="safeArea" id="nhI-QZ-CcB"/>
                         <color key="backgroundColor" systemColor="systemYellowColor"/>
                         <constraints>
+                            <constraint firstItem="nhI-QZ-CcB" firstAttribute="trailing" secondItem="pUi-7O-nHs" secondAttribute="trailing" id="Aty-aI-KyK"/>
                             <constraint firstItem="6XN-Zs-Zci" firstAttribute="centerX" secondItem="nhI-QZ-CcB" secondAttribute="centerX" id="EoO-Lc-Ebn"/>
+                            <constraint firstItem="pUi-7O-nHs" firstAttribute="top" secondItem="onP-r3-5qe" secondAttribute="top" id="Yxr-er-Gzg"/>
+                            <constraint firstItem="pUi-7O-nHs" firstAttribute="leading" secondItem="nhI-QZ-CcB" secondAttribute="leading" id="aRc-Je-p1e"/>
                             <constraint firstItem="6XN-Zs-Zci" firstAttribute="centerY" secondItem="nhI-QZ-CcB" secondAttribute="centerY" id="c3d-oR-nTi"/>
+                            <constraint firstItem="pUi-7O-nHs" firstAttribute="bottom" secondItem="onP-r3-5qe" secondAttribute="bottom" id="n6Y-B6-zdr"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -70,6 +76,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="image" width="960" height="539"/>
         <systemColor name="systemGray2Color">
             <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

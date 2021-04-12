@@ -45,7 +45,7 @@ extension ExpandableViewController {
       willMove(toParent: nil)
         // view.removeFromSuperview()
         // For some reason, removing the view from the superview cause a warning:
-        // Unbalanced calls to begin/end appearance transitions for <Roll.PlayerViewController: 0x7fc7a2072400>.
+        // Unbalanced calls to begin/end appearance transitions for <ExpandableViewController: 0x7fc7a2072400>.
       removeFromParent()
 
       transitioningDelegate = self
