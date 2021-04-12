@@ -8,9 +8,20 @@
 import UIKit
 
 class ExpandableViewController: UIViewController {
-  private var hasBeenPresented = true
   private(set) weak var containerView: UIView?
   private(set) weak var containerViewController: UIViewController?
+
+  override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+    super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+
+    transitioningDelegate = self
+  }
+
+  required init?(coder: NSCoder) {
+    super.init(coder: coder)
+
+    transitioningDelegate = self
+  }
 
   public override var modalPresentationStyle: UIModalPresentationStyle {
     willSet { assert(newValue == .fullScreen, "Modal presentation style other than `.fullScreen` is not supported.") }
@@ -18,38 +29,41 @@ class ExpandableViewController: UIViewController {
   }
 
   public override func didMove(toParent parent: UIViewController?) {
-      super.didMove(toParent: parent)
+    super.didMove(toParent: parent)
 
-      if parent != nil {
-        containerView = view.superview
-        containerViewController = parent
-      }
-
-      hasBeenPresented = parent == nil
+    if let parent = parent {
+      containerView = view.superview
+      containerViewController = parent
     }
+  }
 }
 
 extension ExpandableViewController {
   @IBAction func presentationToggleButtonTapped(_ button: UIButton) {
-    if hasBeenPresented {
+    guard isBeingPresented == false, isBeingDismissed == false else {
+      return
+    }
+    if presentingViewController != nil {
       dismiss(animated: true) { [weak self] in
         guard let self = self else { return }
 
-        self.willMove(toParent: self.containerViewController)
-        self.containerView?.embed(self.view, atIndex: nil, insets: .zero)
         self.containerViewController?.addChild(self)
+        self.beginAppearanceTransition(true, animated: false)
+        self.containerView?.embed(self.view, atIndex: nil, insets: .zero)
+        self.endAppearanceTransition()
         self.didMove(toParent: self.containerViewController)
         button.setTitle("Expand", for: .normal)
       }
     } else if let container = containerViewController {
       willMove(toParent: nil)
-        // view.removeFromSuperview()
-        // For some reason, removing the view from the superview cause a warning:
-        // Unbalanced calls to begin/end appearance transitions for <ExpandableViewController: 0x7fc7a2072400>.
+      self.beginAppearanceTransition(false, animated: false)
+      view.removeFromSuperview()
+      self.endAppearanceTransition()
       removeFromParent()
 
-      transitioningDelegate = self
-      container.present(self, animated: true) { button.setTitle("Dismiss", for: .normal) }
+      container.present(self, animated: true) {
+        button.setTitle("Dismiss", for: .normal)
+      }
     }
   }
 }

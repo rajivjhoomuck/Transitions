@@ -76,7 +76,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="image" width="960" height="539"/>
+        <image name="image" width="480" height="269.5"/>
         <systemColor name="systemGray2Color">
             <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

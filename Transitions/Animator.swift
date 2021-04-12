@@ -25,18 +25,17 @@ class PresentationAnimator: NSObject, UIViewControllerAnimatedTransitioning {
       let expandableViewControllerRootView = expandableViewController.view else {
       return
     }
-
-    transitionView.embed(expandableViewControllerRootView, atIndex: nil, insets: .zero)
+    transitionView.addSubview(expandableViewControllerRootView)
 
     expandableViewControllerRootView.frame = isPresenting
-      ? expandableViewController.containerView?.frame ?? .zero
+      ? expandableViewController.containerView.map { $0.convert($0.bounds, to: transitionView)} ?? .zero
       : transitionContext.initialFrame(for: expandableViewController)
 
     transitionView.backgroundColor = UIColor.systemTeal.withAlphaComponent(0.3) // debugging
 
     let finalFrame = isPresenting
-      ? transitionContext.finalFrame(for: expandableViewController) // transitionContainerView.frame
-      : expandableViewController.containerView.map { $0.convert($0.frame, to: nil) } ?? .zero
+        ? transitionContext.finalFrame(for: expandableViewController) // transitionContainerView.frame
+        : expandableViewController.containerView.map { $0.convert($0.bounds, to: transitionView)} ?? .zero
 
     print(finalFrame)
 
@@ -48,8 +47,8 @@ class PresentationAnimator: NSObject, UIViewControllerAnimatedTransitioning {
 //""")``
 
     UIViewPropertyAnimator.runningPropertyAnimator(withDuration: transitionDuration, delay: 0, options: .curveLinear) {
-      expandableViewController.view.frame = finalFrame
-      expandableViewController.view.layoutIfNeeded()
+        expandableViewControllerRootView.frame = finalFrame
+        transitionView.layoutIfNeeded()
     }
     completion: { _ in
 
