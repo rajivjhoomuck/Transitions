@@ -18,7 +18,7 @@ class PresentationAnimator: NSObject, UIViewControllerAnimatedTransitioning {
   func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval { transitionDuration }
 
   func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
-    let transitionContainerView = transitionContext.containerView
+    let transitionView = transitionContext.containerView
 
     guard
       let expandableViewController = transitionContext.viewController(forKey: isPresenting ? .to : .from) as? ExpandableViewController,
@@ -26,13 +26,13 @@ class PresentationAnimator: NSObject, UIViewControllerAnimatedTransitioning {
       return
     }
 
-    transitionContainerView.embed(expandableViewControllerRootView, atIndex: nil, insets: .zero)
+    transitionView.embed(expandableViewControllerRootView, atIndex: nil, insets: .zero)
 
     expandableViewControllerRootView.frame = isPresenting
       ? expandableViewController.containerView?.frame ?? .zero
       : transitionContext.initialFrame(for: expandableViewController)
 
-    transitionContainerView.backgroundColor = UIColor.systemTeal.withAlphaComponent(0.3) // debugging
+    transitionView.backgroundColor = UIColor.systemTeal.withAlphaComponent(0.3) // debugging
 
     let finalFrame = isPresenting
       ? transitionContext.finalFrame(for: expandableViewController) // transitionContainerView.frame
